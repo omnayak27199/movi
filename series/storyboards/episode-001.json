@@ -1,0 +1,524 @@
+{
+  "series": "VANAR: WILD CODE",
+  "episode": 1,
+  "title": "The Canopy That Never Sleeps",
+  "target_minutes": 27,
+  "status": "planned_not_rendered",
+  "timing_note": "Shot allocations are first-pass editorial targets. Validate actual runtime with a timed animatic.",
+  "shots": [
+    {
+      "id": "S01",
+      "sequence": 1,
+      "title": "NeoVan wakes",
+      "start": "00:00",
+      "end": "00:55",
+      "location": "NeoVan skyline",
+      "characters": [],
+      "visual": "Aerial reveal of contemporary forest-city, living-root transit, bridges, gardens and dawn mist.",
+      "audio": [
+        "Forest dawn ambience",
+        "Warm hand-percussion motif",
+        "Narrator: In NeoVan, the forest isn't behind us. It's the reason we built anything at all."
+      ]
+    },
+    {
+      "id": "S02",
+      "sequence": 1,
+      "title": "The amber warning",
+      "start": "00:55",
+      "end": "01:30",
+      "location": "Canopy transit junction",
+      "characters": [],
+      "visual": "Courier tram approaches a track split; amber warning indicator blinks briefly.",
+      "audio": [
+        "Rail hum",
+        "Subtle electronic chirp"
+      ]
+    },
+    {
+      "id": "S03",
+      "sequence": 1,
+      "title": "Ayaan races the drone",
+      "start": "01:30",
+      "end": "02:30",
+      "location": "Elevated walkway",
+      "characters": [
+        "ayaan",
+        "chiku"
+      ],
+      "visual": "Ayaan races a medicine drone, leaps a narrow gap, and lands safely.",
+      "audio": [
+        "Chiku comms banter",
+        "Drone motor",
+        "Wind through canopy"
+      ]
+    },
+    {
+      "id": "S04",
+      "sequence": 1,
+      "title": "Choosing to help",
+      "start": "02:30",
+      "end": "03:35",
+      "location": "Vendor platform",
+      "characters": [
+        "ayaan"
+      ],
+      "visual": "Ayaan abandons the race to help an elderly vendor with a jammed cart; oranges roll.",
+      "audio": [
+        "Vendor/Ayaan dialogue",
+        "Rolling fruit",
+        "Warm city ambience"
+      ]
+    },
+    {
+      "id": "S05",
+      "sequence": 1,
+      "title": "Friends and distant flicker",
+      "start": "03:35",
+      "end": "05:00",
+      "location": "Canopy walkway",
+      "characters": [
+        "ayaan",
+        "mira",
+        "kabir",
+        "zed"
+      ],
+      "visual": "Friends banter; camera rises to city scale; a distant relay tower flickers before title card.",
+      "audio": [
+        "Group banter",
+        "Music shifts toward mystery",
+        "Title sting"
+      ]
+    },
+    {
+      "id": "S06",
+      "sequence": 2,
+      "title": "Market life and obstacle course",
+      "start": "05:00",
+      "end": "06:00",
+      "location": "Elevated market",
+      "characters": [
+        "chiku"
+      ],
+      "visual": "Lively market and repair kiosks; Chiku presents a drone obstacle course.",
+      "audio": [
+        "Market ambience",
+        "Street musician loop",
+        "Drone motors"
+      ]
+    },
+    {
+      "id": "S07",
+      "sequence": 2,
+      "title": "Course rules",
+      "start": "06:00",
+      "end": "07:00",
+      "location": "Market obstacle course",
+      "characters": [
+        "ayaan",
+        "chiku",
+        "mira",
+        "kabir",
+        "zed"
+      ],
+      "visual": "Chiku explains rules; friends tease Ayaan; Kabir keeps him away from edge.",
+      "audio": [
+        "Playful dialogue",
+        "Light percussion"
+      ]
+    },
+    {
+      "id": "S08",
+      "sequence": 2,
+      "title": "Marker drift",
+      "start": "07:00",
+      "end": "08:00",
+      "location": "Market obstacle course",
+      "characters": [
+        "chiku",
+        "mira"
+      ],
+      "visual": "Controller marker jumps unnaturally; close-ups reveal corrupted location ping.",
+      "audio": [
+        "Two digital ticks",
+        "Music bed dips",
+        "Technical dialogue"
+      ]
+    },
+    {
+      "id": "S09",
+      "sequence": 2,
+      "title": "Five-pulse signature",
+      "start": "08:00",
+      "end": "08:45",
+      "location": "Market obstacle course",
+      "characters": [
+        "chiku",
+        "ayaan"
+      ],
+      "visual": "Drone freezes; lights flash three times, pause, then twice.",
+      "audio": [
+        "Canonical three-short/pause/two-short signal",
+        "Chiku/Ayaan dialogue"
+      ]
+    },
+    {
+      "id": "S10",
+      "sequence": 2,
+      "title": "Official warning",
+      "start": "08:45",
+      "end": "10:00",
+      "location": "Market walkway",
+      "characters": [
+        "mira",
+        "ayaan",
+        "chiku"
+      ],
+      "visual": "Veer's public announcement; Mira spots altered maintenance sticker; friends decide to ask workshop.",
+      "audio": [
+        "Veer PA announcement",
+        "Market ambience",
+        "Curious music transition"
+      ]
+    },
+    {
+      "id": "S11",
+      "sequence": 3,
+      "title": "Civic operations hub",
+      "start": "10:00",
+      "end": "10:50",
+      "location": "Civic operations hub",
+      "characters": [
+        "veer"
+      ],
+      "visual": "Functional tree-integrated control room; engineers report three relay interruptions.",
+      "audio": [
+        "Room tone",
+        "Quiet interface pings"
+      ]
+    },
+    {
+      "id": "S12",
+      "sequence": 3,
+      "title": "Veer's response",
+      "start": "10:50",
+      "end": "11:40",
+      "location": "Civic operations hub",
+      "characters": [
+        "veer"
+      ],
+      "visual": "Veer orders safe routes maintained, physical checkpoints staffed, and honest updates shared.",
+      "audio": [
+        "Veer's measured dialogue"
+      ]
+    },
+    {
+      "id": "S13",
+      "sequence": 3,
+      "title": "Kairav enters",
+      "start": "11:40",
+      "end": "12:20",
+      "location": "Civic operations hub",
+      "characters": [
+        "kairav"
+      ],
+      "visual": "Kairav enters with aides; scar over right brow and modern black coat clearly readable.",
+      "audio": [
+        "Room tone narrows",
+        "No villain sting"
+      ]
+    },
+    {
+      "id": "S14",
+      "sequence": 3,
+      "title": "Safety versus fear",
+      "start": "12:20",
+      "end": "14:10",
+      "location": "Civic operations hub",
+      "characters": [
+        "veer",
+        "kairav"
+      ],
+      "visual": "Brothers debate evidence, public trust and expanded restrictions through restrained close-ups.",
+      "audio": [
+        "Dialogue-led scene",
+        "Minimal low strings"
+      ]
+    },
+    {
+      "id": "S15",
+      "sequence": 3,
+      "title": "Ayaan used as pressure",
+      "start": "14:10",
+      "end": "15:00",
+      "location": "Civic operations hub",
+      "characters": [
+        "veer",
+        "kairav"
+      ],
+      "visual": "Kairav mentions Ayaan; Veer orders quiet checks; network map blinks out and returns.",
+      "audio": [
+        "Restrained dialogue",
+        "Single interface pulse"
+      ]
+    },
+    {
+      "id": "S16",
+      "sequence": 4,
+      "title": "Approach under warning signs",
+      "start": "15:00",
+      "end": "15:50",
+      "location": "Old relay station",
+      "characters": [
+        "ayaan",
+        "chiku",
+        "mira"
+      ],
+      "visual": "Vine-reclaimed relay, dusty solar panels, humming bridge and restricted-access sign.",
+      "audio": [
+        "Wind through vines",
+        "Bridge vibration"
+      ]
+    },
+    {
+      "id": "S17",
+      "sequence": 4,
+      "title": "The door is already open",
+      "start": "15:50",
+      "end": "16:35",
+      "location": "Old relay station entrance",
+      "characters": [
+        "ayaan",
+        "mira",
+        "chiku"
+      ],
+      "visual": "Ayaan sees the door ajar; his joking expression disappears; Mira signals caution.",
+      "audio": [
+        "Ambient birds gradually fade",
+        "Ayaan dialogue"
+      ]
+    },
+    {
+      "id": "S18",
+      "sequence": 4,
+      "title": "Map of response times",
+      "start": "16:35",
+      "end": "17:45",
+      "location": "Relay station interior",
+      "characters": [
+        "chiku",
+        "mira",
+        "ayaan"
+      ],
+      "visual": "Read-only diagnostic reader reveals relay response intervals and network blind spots.",
+      "audio": [
+        "Console hum",
+        "Chiku/Mira dialogue"
+      ]
+    },
+    {
+      "id": "S19",
+      "sequence": 4,
+      "title": "Unmarked probe",
+      "start": "17:45",
+      "end": "18:30",
+      "location": "Relay station console",
+      "characters": [
+        "ayaan",
+        "chiku"
+      ],
+      "visual": "Unmarked device under console emits the canonical five-pulse signature while logs copy.",
+      "audio": [
+        "Canonical three-short/pause/two-short signal",
+        "Transfer tone"
+      ]
+    },
+    {
+      "id": "S20",
+      "sequence": 4,
+      "title": "Remote session active",
+      "start": "18:30",
+      "end": "19:15",
+      "location": "Relay station console",
+      "characters": [
+        "ayaan",
+        "mira",
+        "chiku"
+      ],
+      "visual": "Remote-session warning appears; Ayaan touches the probe and a red indicator activates.",
+      "audio": [
+        "Mira warning",
+        "Relay click",
+        "Power snaps on"
+      ]
+    },
+    {
+      "id": "S21",
+      "sequence": 4,
+      "title": "Station locks down",
+      "start": "19:15",
+      "end": "20:15",
+      "location": "Relay station",
+      "characters": [
+        "ayaan",
+        "mira",
+        "chiku"
+      ],
+      "visual": "Door locks, maintenance drone turns toward them, Mira tries release and Ayaan finds tampered latch.",
+      "audio": [
+        "Approaching motor",
+        "Lock clunk",
+        "Rising pulse under dialogue"
+      ]
+    },
+    {
+      "id": "S22",
+      "sequence": 4,
+      "title": "Escape and consequence",
+      "start": "20:15",
+      "end": "21:20",
+      "location": "Service bridge",
+      "characters": [
+        "ayaan",
+        "mira",
+        "chiku"
+      ],
+      "visual": "Copy completes; Ayaan releases lock; drone scans and transmits as trio escapes.",
+      "audio": [
+        "Reader completion",
+        "Lock disengage",
+        "Drone servo",
+        "Footsteps and leaves"
+      ]
+    },
+    {
+      "id": "S23",
+      "sequence": 4,
+      "title": "Argument beneath the roots",
+      "start": "21:20",
+      "end": "22:00",
+      "location": "Forest service path",
+      "characters": [
+        "ayaan",
+        "mira",
+        "chiku"
+      ],
+      "visual": "Mira confronts Ayaan; partial route identifier is confirmed; hidden lens retracts.",
+      "audio": [
+        "Dialogue",
+        "Forest ambience",
+        "Subtle mechanical click"
+      ]
+    },
+    {
+      "id": "S24",
+      "sequence": 5,
+      "title": "Rain and accountability",
+      "start": "22:00",
+      "end": "23:15",
+      "location": "Service bridge",
+      "characters": [
+        "ayaan",
+        "mira",
+        "kabir",
+        "zed",
+        "chiku"
+      ],
+      "visual": "Ayaan admits his mistake; Kabir explains shared risk; group regains trust cautiously.",
+      "audio": [
+        "Rain",
+        "Dialogue",
+        "Quiet warm motif"
+      ]
+    },
+    {
+      "id": "S25",
+      "sequence": 5,
+      "title": "City map flickers",
+      "start": "23:15",
+      "end": "24:00",
+      "location": "Service bridge",
+      "characters": [
+        "mira",
+        "ayaan",
+        "chiku",
+        "kabir",
+        "zed"
+      ],
+      "visual": "Transit screen flashes relay path; bridge lights fail and emergency strips turn muted red.",
+      "audio": [
+        "Electrical hum cuts",
+        "Emergency power relay"
+      ]
+    },
+    {
+      "id": "S26",
+      "sequence": 5,
+      "title": "The silhouette",
+      "start": "24:00",
+      "end": "24:45",
+      "location": "Service bridge",
+      "characters": [
+        "ayaan",
+        "mira",
+        "chiku",
+        "kabir",
+        "zed"
+      ],
+      "visual": "Anonymous silhouette watches across gap and disappears into rain; Mira stops Ayaan from rushing alone.",
+      "audio": [
+        "Rain",
+        "Distant metallic footstep",
+        "Dialogue"
+      ]
+    },
+    {
+      "id": "S27",
+      "sequence": 5,
+      "title": "Watcher reports",
+      "start": "24:45",
+      "end": "25:45",
+      "location": "Undisclosed control room",
+      "characters": [
+        "watcher",
+        "kairav"
+      ],
+      "visual": "Watcher reports that the boy found the probe; surveillance displays show the friends leaving.",
+      "audio": [
+        "Quiet electronics",
+        "Watcher/Kairav dialogue"
+      ]
+    },
+    {
+      "id": "S28",
+      "sequence": 5,
+      "title": "Kairav's final move",
+      "start": "25:45",
+      "end": "26:40",
+      "location": "Undisclosed control room",
+      "characters": [
+        "kairav"
+      ],
+      "visual": "Kairav studies Veer's live image as defense markers turn from amber to red.",
+      "audio": [
+        "Kairav dialogue",
+        "Low percussion accumulates"
+      ]
+    },
+    {
+      "id": "S29",
+      "sequence": 5,
+      "title": "Signal sting",
+      "start": "26:40",
+      "end": "27:00",
+      "location": "Black/end card",
+      "characters": [],
+      "visual": "Cut to black, then end card after the signal sting.",
+      "audio": [
+        "Forest ambience returns",
+        "Canonical three-short/pause/two-short signal",
+        "Low percussion hit"
+      ]
+    }
+  ]
+}
