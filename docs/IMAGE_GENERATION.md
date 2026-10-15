@@ -1,6 +1,6 @@
 # Image generation setup
 
-MOVI now includes an opt-in OpenAI Images API adapter for character reference candidates. It is not called by `movi validate`, `movi status`, or any planning command; it runs only when explicitly requested.
+MOVI includes opt-in OpenAI API and local ComfyUI adapters for character reference candidates. They are not called by `movi validate`, `movi status`, or planning commands; generation runs only when explicitly requested.
 
 ## Setup in GitHub Codespaces
 
@@ -32,3 +32,26 @@ Expected output path: `assets/generated/characters/ayaan-reference-v1.png`. Gene
 The command registers the result as `generated`, **not** `approved`. Review the left-ear notch, amber-brown fur, teal jacket, view consistency, anatomy, and expressions. Verify the provider's current terms and project usage rights before publication. Only then should the asset be approved and used as a visual reference for episode shots.
 
 The adapter currently generates still images only. It does not generate voices, animate characters, assemble shots, or render a finished episode.
+
+## Free local generation with ComfyUI (no image API key)
+
+This path runs inference on your own Mac. It has no per-image cloud API fee, but needs local storage, compute, and a model checkpoint whose licence permits your intended use. The MOVI Codespace cannot access the model running on your Mac through `127.0.0.1`; run the command below in the Mac terminal where ComfyUI is running, or configure a reachable server URL carefully.
+
+1. Install ComfyUI for macOS from [the official download page](https://www.comfy.org/download). Apple Silicon is supported. See the official [ComfyUI repository](https://github.com/Comfy-Org/ComfyUI) for setup and model instructions.
+2. Download a compatible image checkpoint using ComfyUI's model manager or documented setup. Review the model licence, especially if VANAR becomes commercial.
+3. Start ComfyUI and open its UI (normally `http://127.0.0.1:8188`). Build a basic text-to-image workflow with a positive CLIP text-encode node and a Save Image node.
+4. Export the workflow in **API format**. Put that JSON file somewhere local and identify the positive text-encode node ID in the exported JSON; it must have `inputs.text`.
+5. In the same terminal where the MOVI repository is installed, run:
+
+```bash
+movi generate character-reference Ayaan \
+  --provider comfyui \
+  --workflow /absolute/path/to/workflow_api.json \
+  --prompt-node 6
+```
+
+Replace the example path and node ID with your actual workflow file and positive prompt node ID. If ComfyUI uses a different URL, add `--base-url http://127.0.0.1:8188` with the correct local address.
+
+Expected output: `assets/generated/characters/ayaan-reference-v1.png`. MOVI waits for the local job, downloads the PNG, and registers it as `generated`, not `approved`. Check the image before using it in episode shots.
+
+**Important:** the OpenAI provider remains the default, so include `--provider comfyui` to avoid API-key use. Do not expose a ComfyUI server to the public internet without proper security controls.
