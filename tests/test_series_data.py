@@ -19,5 +19,15 @@ class SeriesDataTests(unittest.TestCase):
         self.assertTrue(all(item["scenes"] for item in episodes))
         self.assertTrue(all(scene.get("beat") for ep in episodes for scene in ep["scenes"]))
 
+    def test_episode_one_storyboard_has_unique_shots_and_timing_fields(self):
+        data = json.loads((ROOT / "series/storyboards/episode-001.json").read_text(encoding="utf-8"))
+        shots = data["shots"]
+        self.assertEqual(len(shots), 29)
+        ids = [shot["id"] for shot in shots]
+        self.assertEqual(len(ids), len(set(ids)))
+        self.assertTrue(all(shot.get("start") and shot.get("end") for shot in shots))
+        self.assertTrue(all(shot.get("visual") for shot in shots))
+        self.assertEqual(data["status"], "planned_not_rendered")
+
 if __name__ == "__main__":
     unittest.main()
