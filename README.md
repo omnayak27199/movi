@@ -65,7 +65,7 @@ The planned path does not need to exist until the asset is generated. To mark an
 
 ## Honest status
 
-MOVI does **not** yet generate a finished 27-minute animated MP4. Character image generation, voice recording/TTS, music generation, video generation, clip assembly, and rendered-episode QA remain unimplemented. Storyboard timings are editorial targets and must be checked in a timed animatic.
+MOVI does **not** yet generate a finished 27-minute animated MP4. Character image generation has an opt-in OpenAI Images API adapter for candidate reference sheets. Voice recording/TTS, music generation, video generation, clip assembly, and rendered-episode QA remain unimplemented. Storyboard timings are editorial targets and must be checked in a timed animatic.
 
 ## Roadmap
 
