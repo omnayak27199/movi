@@ -1,0 +1,17 @@
+{
+  "series": "VANAR: WILD CODE",
+  "world": "NeoVan",
+  "style": "cinematic 3D animation, contemporary jungle civilization, expressive character acting",
+  "characters": [
+    {"id":"ayaan","name":"Ayaan","role":"protagonist","age_arc":"teen to young adult","traits":["curious","stubborn","compassionate"],"voice_direction":"warm mid-range voice; youthful urgency that matures into grounded resolve","visual_lock":"athletic young vanar; amber-brown fur; small notch in left ear; teal utility jacket; no unexplained costume changes"},
+    {"id":"veer","name":"Veer","role":"Ayaan's father and community leader","traits":["wise","protective","principled"],"voice_direction":"deep calm voice; measured pace; warmth under authority","visual_lock":"broad-shouldered older vanar; salt-and-pepper facial fur; charcoal field coat with copper trim"},
+    {"id":"kairav","name":"Kairav","role":"antagonist uncle","traits":["patient","controlling","strategic"],"voice_direction":"low smooth voice; rarely shouts; menace through restraint","visual_lock":"tall dark-furred vanar; pale scar over right brow; black modern armor with muted crimson accents"},
+    {"id":"rudra","name":"Rudra","role":"Veer's trusted friend and Ayaan's guardian","traits":["resourceful","loyal","practical"],"voice_direction":"weathered, steady voice; dry humor","visual_lock":"rangy older vanar; forest-green travel gear; worn shoulder satchel"},
+    {"id":"chiku","name":"Chiku","role":"inventor and childhood friend","traits":["inventive","fast-talking","anxious under pressure"],"voice_direction":"quick bright delivery; clear consonants","visual_lock":"compact golden-brown vanar; round protective goggles; modular tool belt"},
+    {"id":"mira","name":"Mira","role":"strategist and fighter","traits":["observant","direct","disciplined"],"voice_direction":"confident, economical phrasing","visual_lock":"sleek russet-furred vanar; short practical hair tuft; blue-grey tactical streetwear"},
+    {"id":"kabir","name":"Kabir","role":"team protector","traits":["patient","strong","gentle"],"voice_direction":"low, gentle, deliberate","visual_lock":"large grey-brown vanar; reinforced forearm guards; simple earth-tone clothing"},
+    {"id":"zed","name":"Zed","role":"scout","traits":["playful","alert","improvisational"],"voice_direction":"light, agile delivery; jokes mask vigilance","visual_lock":"lean sandy-furred vanar; orange scarf; compact binocular device"},
+    {"id":"tara","name":"Tara","role":"courier and aspiring medic","traits":["empathetic","brave","quick-thinking"],"voice_direction":"clear, warm, determined","visual_lock":"small cream-and-copper-furred vanar; cross-body medical pouch; lilac accents"},
+    {"id":"the_wayfarer","name":"The Wayfarer","role":"mysterious humble mentor; devotional portrayal handled respectfully","traits":["humble","compassionate","unshakably courageous"],"voice_direction":"gentle and grounded; never theatrical or mocking","visual_lock":"simple traveler's wrap; calm eyes; understated presence; avoid turning sacred identity into a gimmick"}
+  ]
+}
