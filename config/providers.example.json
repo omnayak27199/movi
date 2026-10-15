@@ -1,0 +1,8 @@
+{
+  "note": "Template only. Copy to providers.json locally; providers.json is gitignored. No adapters are implemented yet.",
+  "text": {"provider": null, "model": null},
+  "voice": {"provider": null, "model": null},
+  "music": {"provider": null, "model": null},
+  "visuals": {"provider": null, "model": null},
+  "assembly": {"tool": "ffmpeg"}
+}
