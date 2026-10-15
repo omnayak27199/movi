@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
 import sys
 
-from movi.image_generation import ImageGenerationError, generate_openai_image
+from movi.image_generation import ImageGenerationError, generate_comfyui_image, generate_openai_image
 
 ROOT = Path(__file__).resolve().parents[2]
 ASSET_REGISTRY = ROOT / "assets" / "registry.json"
@@ -220,7 +220,7 @@ def register_asset(args: argparse.Namespace) -> int:
 
 
 
-def generate_character_reference(character_name: str, model: str) -> int:
+def generate_character_reference(character_name: str, provider: str, model: str, workflow: str | None, prompt_node: str | None, base_url: str) -> int:
     prompt_file = ROOT / "series" / "characters" / "reference_prompts.json"
     prompts = load_json(prompt_file)
     characters = prompts.get("characters", {})
@@ -238,8 +238,21 @@ def generate_character_reference(character_name: str, model: str) -> int:
     if any(asset.get("id") == asset_id for asset in assets):
         print(f"Asset ID already exists: {asset_id}. Remove/revise the registry entry before regenerating.", file=sys.stderr)
         return 2
-    print(f"Generating reference for {canonical} with OpenAI model {model}...")
-    result = generate_openai_image(prompt=spec["prompt"], output_path=output_path, model=model)
+    if provider == "openai":
+        print(f"Generating reference for {canonical} with OpenAI model {model}...")
+        result = generate_openai_image(prompt=spec["prompt"], output_path=output_path, model=model)
+    elif provider == "comfyui":
+        if not workflow or not prompt_node:
+            print("ComfyUI requires --workflow PATH and --prompt-node NODE_ID.", file=sys.stderr)
+            return 2
+        print(f"Generating reference for {canonical} through local ComfyUI at {base_url}...")
+        result = generate_comfyui_image(
+            prompt=spec["prompt"], output_path=output_path, workflow_path=Path(workflow),
+            prompt_node=prompt_node, base_url=base_url,
+        )
+    else:
+        print(f"Unsupported image provider: {provider}", file=sys.stderr)
+        return 2
     assets.append({
         "id": asset_id,
         "type": "character_reference",
@@ -247,7 +260,7 @@ def generate_character_reference(character_name: str, model: str) -> int:
         "status": "generated",
         "provider": result["provider"],
         "model": result["model"],
-        "license_note": "Generated via OpenAI API; verify current account terms and usage rights before publication.",
+        "license_note": ("Generated locally with ComfyUI; verify the model checkpoint licence before publication." if provider == "comfyui" else "Generated via OpenAI API; verify current account terms and usage rights before publication."),
         "prompt": spec["prompt"],
         "episode": 1,
         "shot_id": None,
@@ -302,8 +315,11 @@ def main() -> int:
     generate_sub = p_generate.add_subparsers(dest="generate_command", required=True)
     p_character = generate_sub.add_parser("character-reference", help="Generate a candidate character reference image")
     p_character.add_argument("character", help="Character name from reference_prompts.json")
-    p_character.add_argument("--provider", choices=["openai"], default="openai")
-    p_character.add_argument("--model", default="gpt-image-1")
+    p_character.add_argument("--provider", choices=["openai", "comfyui"], default="openai")
+    p_character.add_argument("--model", default="gpt-image-1", help="OpenAI image model; ignored by ComfyUI")
+    p_character.add_argument("--workflow", help="ComfyUI API-format workflow JSON file")
+    p_character.add_argument("--prompt-node", help="Positive text-encode node ID in the ComfyUI workflow")
+    p_character.add_argument("--base-url", default="http://127.0.0.1:8188", help="Local ComfyUI server URL")
 
     p_render = sub.add_parser("render", help="Render an episode (not yet implemented)")
     p_render.add_argument("episode", type=int)
@@ -325,7 +341,7 @@ def main() -> int:
             if args.assets_command == "register":
                 return register_asset(args)
         if args.command == "generate" and args.generate_command == "character-reference":
-            return generate_character_reference(args.character, args.model)
+            return generate_character_reference(args.character, args.provider, args.model, args.workflow, args.prompt_node, args.base_url)
         if args.command == "render":
             return render(args.episode)
     except (ValueError, ImageGenerationError) as exc:
