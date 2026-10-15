@@ -328,7 +328,7 @@ def main() -> int:
             return generate_character_reference(args.character, args.model)
         if args.command == "render":
             return render(args.episode)
-    except ValueError as exc:
+    except (ValueError, ImageGenerationError) as exc:
         print(f"Error: {exc}", file=sys.stderr)
         return 1
     return 0
