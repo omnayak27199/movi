@@ -7,6 +7,8 @@ from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
 import sys
 
+from movi.image_generation import ImageGenerationError, generate_openai_image
+
 ROOT = Path(__file__).resolve().parents[2]
 ASSET_REGISTRY = ROOT / "assets" / "registry.json"
 ASSET_TYPES = {
@@ -37,7 +39,7 @@ def validate() -> int:
             data = load_json(ROOT / rel)
             if not isinstance(data, (dict, list)):
                 errors.append(f"{rel}: root must be a JSON object or array")
-        except ValueError as exc:
+        except (ValueError, ImageGenerationError) as exc:
             errors.append(str(exc))
 
     storyboard_path = ROOT / "series/storyboards/episode-001.json"
@@ -217,6 +219,48 @@ def register_asset(args: argparse.Namespace) -> int:
     return 0
 
 
+
+def generate_character_reference(character_name: str, model: str) -> int:
+    prompt_file = ROOT / "series" / "characters" / "reference_prompts.json"
+    prompts = load_json(prompt_file)
+    characters = prompts.get("characters", {})
+    canonical = next((name for name in characters if name.casefold() == character_name.casefold()), None)
+    if canonical is None:
+        available = ", ".join(characters)
+        print(f"Unknown character: {character_name}. Available: {available}", file=sys.stderr)
+        return 2
+    spec = characters[canonical]
+    output_path = ROOT / "assets" / "generated" / "characters" / f"{canonical.lower()}-reference-v1.png"
+    relative_path = output_path.relative_to(ROOT).as_posix()
+    registry = load_json(ASSET_REGISTRY)
+    assets = registry.setdefault("assets", [])
+    asset_id = spec["asset_id"]
+    if any(asset.get("id") == asset_id for asset in assets):
+        print(f"Asset ID already exists: {asset_id}. Remove/revise the registry entry before regenerating.", file=sys.stderr)
+        return 2
+    print(f"Generating reference for {canonical} with OpenAI model {model}...")
+    result = generate_openai_image(prompt=spec["prompt"], output_path=output_path, model=model)
+    assets.append({
+        "id": asset_id,
+        "type": "character_reference",
+        "path": relative_path,
+        "status": "generated",
+        "provider": result["provider"],
+        "model": result["model"],
+        "license_note": "Generated via OpenAI API; verify current account terms and usage rights before publication.",
+        "prompt": spec["prompt"],
+        "episode": 1,
+        "shot_id": None,
+        "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "notes": "Candidate only. Human visual consistency and quality review required before approval.",
+    })
+    save_json(ASSET_REGISTRY, registry)
+    print(f"Generated candidate: {relative_path} ({result['bytes']} bytes)")
+    print(f"Registered as {asset_id} [generated], not approved.")
+    print("Review the image and verify provider terms before using it in episode shots.")
+    return 0
+
+
 def render(episode_number: int) -> int:
     print("Rendering is not configured yet.")
     print("No video has been generated. Configure and implement provider adapters first.")
@@ -253,6 +297,14 @@ def main() -> int:
     p_register.add_argument("--shot-id", default="")
     p_register.add_argument("--notes", default="")
 
+
+    p_generate = sub.add_parser("generate", help="Generate a production asset using a configured provider")
+    generate_sub = p_generate.add_subparsers(dest="generate_command", required=True)
+    p_character = generate_sub.add_parser("character-reference", help="Generate a candidate character reference image")
+    p_character.add_argument("character", help="Character name from reference_prompts.json")
+    p_character.add_argument("--provider", choices=["openai"], default="openai")
+    p_character.add_argument("--model", default="gpt-image-1")
+
     p_render = sub.add_parser("render", help="Render an episode (not yet implemented)")
     p_render.add_argument("episode", type=int)
     args = parser.parse_args()
@@ -272,6 +324,8 @@ def main() -> int:
                 return list_assets()
             if args.assets_command == "register":
                 return register_asset(args)
+        if args.command == "generate" and args.generate_command == "character-reference":
+            return generate_character_reference(args.character, args.model)
         if args.command == "render":
             return render(args.episode)
     except ValueError as exc:
