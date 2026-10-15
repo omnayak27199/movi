@@ -1,0 +1,18 @@
+series: VANAR: WILD CODE
+world: NeoVan
+format:
+  target_episode_minutes: 27
+  genre: cinematic 3D animated adventure fantasy
+  visual_language: contemporary jungle civilization, practical technology, expressive action
+canon:
+  - The vanar communities have modern transport, communications, workshops, and civic institutions integrated into a forest environment.
+  - Veer leads through consent, service, and earned trust rather than royal pageantry.
+  - Kairav's rise is gradual and political before it becomes openly violent.
+  - Ayaan survives through help from others; he is not invincible.
+  - The Wayfarer is portrayed with humility and respect. Devotional material is not used as a joke or cheap spectacle.
+continuity_rules:
+  - Keep character visual locks stable unless an episode explicitly establishes a change.
+  - Injuries, equipment loss, relationships, and discovered information persist into later episodes.
+  - Every power has a cost, limitation, or training requirement.
+  - Do not resolve a major arc in a single episode without setup.
+  - Distinguish original fantasy inventions from religious scripture.
