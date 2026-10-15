@@ -1,11 +1,20 @@
 """Command-line interface for MOVI."""
 from __future__ import annotations
+
 import argparse
 import json
-from pathlib import Path
+from datetime import datetime, timezone
+from pathlib import Path, PurePosixPath
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
+ASSET_REGISTRY = ROOT / "assets" / "registry.json"
+ASSET_TYPES = {
+    "character_reference", "environment_keyframe", "shot_image",
+    "voice", "music", "sfx", "video", "other",
+}
+ASSET_STATUSES = {"planned", "generated", "approved", "rejected"}
+
 
 def load_json(path: Path):
     try:
@@ -14,6 +23,12 @@ def load_json(path: Path):
         raise ValueError(f"Required file not found: {path}")
     except json.JSONDecodeError as exc:
         raise ValueError(f"Invalid JSON in {path}: {exc}")
+
+
+def save_json(path: Path, data) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
 
 def validate() -> int:
     errors = []
@@ -24,6 +39,7 @@ def validate() -> int:
                 errors.append(f"{rel}: root must be a JSON object or array")
         except ValueError as exc:
             errors.append(str(exc))
+
     storyboard_path = ROOT / "series/storyboards/episode-001.json"
     try:
         data = load_json(storyboard_path)
@@ -37,15 +53,38 @@ def validate() -> int:
             for field in ("id", "title", "start", "end", "visual"):
                 if not shot.get(field):
                     errors.append(f"series/storyboards/episode-001.json: shot missing {field}")
-    except ValueError as exc:
+    except (ValueError, AttributeError) as exc:
         errors.append(str(exc))
+
+    try:
+        registry = load_json(ASSET_REGISTRY)
+        assets = registry.get("assets", [])
+        if not isinstance(assets, list):
+            errors.append("assets/registry.json: 'assets' must be an array")
+        else:
+            ids = [asset.get("id") for asset in assets]
+            if len(ids) != len(set(ids)):
+                errors.append("assets/registry.json: asset IDs must be unique")
+            required = ("id", "type", "path", "status", "license_note")
+            for asset in assets:
+                for field in required:
+                    if not asset.get(field):
+                        errors.append(f"assets/registry.json: asset missing {field}")
+                if asset.get("type") not in ASSET_TYPES:
+                    errors.append(f"assets/registry.json: unsupported asset type for {asset.get('id')}")
+                if asset.get("status") not in ASSET_STATUSES:
+                    errors.append(f"assets/registry.json: unsupported status for {asset.get('id')}")
+    except (ValueError, AttributeError) as exc:
+        errors.append(str(exc))
+
     if errors:
         print("MOVI validation failed:")
         for err in errors:
             print(f" - {err}")
         return 1
-    print("MOVI validation passed: character, episode, and Episode 1 storyboard data are valid.")
+    print("MOVI validation passed: series, storyboard, and asset registry data are valid.")
     return 0
+
 
 def plan(episode_number: int) -> int:
     data = load_json(ROOT / "series/episodes.json")
@@ -63,6 +102,7 @@ def plan(episode_number: int) -> int:
         print(f"   Beat: {scene.get('beat', 'TBD')}")
     return 0
 
+
 def screenplay(episode_number: int) -> int:
     folder = ROOT / "series" / "screenplays"
     matches = sorted(folder.glob(f"episode-{episode_number:03d}-*.md"))
@@ -71,6 +111,7 @@ def screenplay(episode_number: int) -> int:
         return 2
     print(matches[0].read_text(encoding="utf-8"))
     return 0
+
 
 def storyboard(episode_number: int) -> int:
     path = ROOT / "series" / "storyboards" / f"episode-{episode_number:03d}.json"
@@ -95,11 +136,13 @@ def storyboard(episode_number: int) -> int:
     print("\nNote: planned timings are not validated against a rendered animatic.")
     return 0
 
+
 def pipeline_status() -> int:
     stages = [
         ("story data and outline", True, "JSON data and episode outline"),
         ("screenplay drafts", True, "Episode 1 draft exists; timing is unverified"),
         ("shot manifest", True, "Episode 1 has a structured 29-shot plan"),
+        ("asset registry", True, "Metadata registry exists; no media files are implied"),
         ("character reference images", False, "Prompts exist; images are not generated/approved"),
         ("voice generation/recording", False, "Not integrated"),
         ("music and sound generation", False, "Guides exist; generation/assembly not integrated"),
@@ -113,6 +156,67 @@ def pipeline_status() -> int:
     print("\nA checked stage means its planning/scaffold exists, not that a finished episode has been produced.")
     return 0
 
+
+def list_assets() -> int:
+    registry = load_json(ASSET_REGISTRY)
+    assets = registry.get("assets", [])
+    if not assets:
+        print("Asset registry is empty. Register planned assets with: movi assets register --help")
+        return 0
+    print(f"# MOVI assets ({len(assets)})")
+    for asset in assets:
+        print(f"{asset['id']} [{asset['status']}] {asset['type']}")
+        print(f"  Path: {asset['path']}")
+        print(f"  Provider/model: {asset.get('provider') or '—'} / {asset.get('model') or '—'}")
+        print(f"  License: {asset.get('license_note', 'Unspecified')}")
+    return 0
+
+
+def register_asset(args: argparse.Namespace) -> int:
+    if args.asset_type not in ASSET_TYPES:
+        print(f"Unsupported type: {args.asset_type}", file=sys.stderr)
+        return 2
+    if args.status not in ASSET_STATUSES:
+        print(f"Unsupported status: {args.status}", file=sys.stderr)
+        return 2
+
+    relative = PurePosixPath(args.path)
+    if relative.is_absolute() or ".." in relative.parts or not args.path.strip():
+        print("Asset path must be a non-empty repository-relative path without '..'.", file=sys.stderr)
+        return 2
+    if args.status in {"generated", "approved"} and not (ROOT / Path(*relative.parts)).is_file():
+        print(f"Cannot mark asset {args.status}: file does not exist at {args.path}", file=sys.stderr)
+        return 2
+    if args.status == "approved" and args.license_note == "Unspecified; review before publication":
+        print("Approved assets need an explicit --license-note.", file=sys.stderr)
+        return 2
+
+    registry = load_json(ASSET_REGISTRY)
+    assets = registry.setdefault("assets", [])
+    if any(asset.get("id") == args.asset_id for asset in assets):
+        print(f"Asset ID already exists: {args.asset_id}", file=sys.stderr)
+        return 2
+
+    asset = {
+        "id": args.asset_id,
+        "type": args.asset_type,
+        "path": relative.as_posix(),
+        "status": args.status,
+        "provider": args.provider or None,
+        "model": args.model or None,
+        "license_note": args.license_note,
+        "prompt": args.prompt or None,
+        "episode": args.episode,
+        "shot_id": args.shot_id or None,
+        "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "notes": args.notes or None,
+    }
+    assets.append(asset)
+    save_json(ASSET_REGISTRY, registry)
+    print(f"Registered asset {args.asset_id} [{args.status}] in assets/registry.json")
+    return 0
+
+
 def render(episode_number: int) -> int:
     print("Rendering is not configured yet.")
     print("No video has been generated. Configure and implement provider adapters first.")
@@ -120,10 +224,11 @@ def render(episode_number: int) -> int:
     print("See docs/PROVIDERS.md for the planned integration boundary.")
     return 3
 
+
 def main() -> int:
     parser = argparse.ArgumentParser(prog="movi", description="MOVI animated-series toolkit")
     sub = parser.add_subparsers(dest="command", required=True)
-    sub.add_parser("validate", help="Validate core series and storyboard data")
+    sub.add_parser("validate", help="Validate series, storyboard, and asset registry data")
     p_plan = sub.add_parser("plan", help="Print an episode outline")
     p_plan.add_argument("episode", type=int)
     p_screenplay = sub.add_parser("screenplay", help="Print a screenplay draft")
@@ -131,6 +236,23 @@ def main() -> int:
     p_storyboard = sub.add_parser("storyboard", help="Print a structured shot plan")
     p_storyboard.add_argument("episode", type=int)
     sub.add_parser("status", help="Show which production stages are implemented")
+
+    p_assets = sub.add_parser("assets", help="Manage production asset metadata")
+    assets_sub = p_assets.add_subparsers(dest="assets_command", required=True)
+    assets_sub.add_parser("list", help="List registered assets")
+    p_register = assets_sub.add_parser("register", help="Register a planned or generated asset")
+    p_register.add_argument("--id", dest="asset_id", required=True, help="Stable unique asset ID")
+    p_register.add_argument("--type", dest="asset_type", required=True, choices=sorted(ASSET_TYPES))
+    p_register.add_argument("--path", required=True, help="Repository-relative asset path")
+    p_register.add_argument("--status", choices=sorted(ASSET_STATUSES), default="planned")
+    p_register.add_argument("--provider", default="")
+    p_register.add_argument("--model", default="")
+    p_register.add_argument("--license-note", default="Unspecified; review before publication")
+    p_register.add_argument("--prompt", default="")
+    p_register.add_argument("--episode", type=int, default=1)
+    p_register.add_argument("--shot-id", default="")
+    p_register.add_argument("--notes", default="")
+
     p_render = sub.add_parser("render", help="Render an episode (not yet implemented)")
     p_render.add_argument("episode", type=int)
     args = parser.parse_args()
@@ -145,12 +267,18 @@ def main() -> int:
             return storyboard(args.episode)
         if args.command == "status":
             return pipeline_status()
+        if args.command == "assets":
+            if args.assets_command == "list":
+                return list_assets()
+            if args.assets_command == "register":
+                return register_asset(args)
         if args.command == "render":
             return render(args.episode)
     except ValueError as exc:
         print(f"Error: {exc}", file=sys.stderr)
         return 1
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())
