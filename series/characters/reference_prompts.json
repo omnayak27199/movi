@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "series": "VANAR: WILD CODE",
+  "characters": {
+    "Ayaan": {
+      "asset_id": "char-ayaan-reference-v1",
+      "type": "character_reference",
+      "prompt": "Create a production character reference sheet for Ayaan, an athletic teenage-to-young-adult male vanar from a contemporary forest megacity. Amber-brown fur, clearly visible small notch in the left ear, expressive warm brown eyes, youthful face, teal utility jacket with practical seams and subtle wear, simple dark utility trousers and functional shoes, no crown, no ceremonial armor. Show front, three-quarter, side, and back views plus three face expressions: playful confidence, alert curiosity, sincere remorse. Preserve the exact jacket, amber-brown fur, and left-ear notch in every view. High-end cinematic stylized-realistic 3D animation character design, expressive but anatomically coherent face, detailed groomed fur, believable fabric and utility materials, production-ready clean lighting, neutral grey-green studio background, consistent proportions across views, no extra limbs or fingers, no costume variation, no weapons, no text, no watermark, wide 3:2 composition.",
+      "locked_traits": [
+        "amber-brown fur",
+        "notch in left ear",
+        "teal utility jacket"
+      ],
+      "review_required": true
+    },
+    "Chiku": {
+      "asset_id": "char-chiku-reference-v1",
+      "type": "character_reference",
+      "prompt": "Production character reference sheet for Chiku, a compact golden-brown young male vanar inventor. Round protective goggles, modular tool belt with small practical diagnostic tools, contemporary workshop clothing with layered pockets. Show front, three-quarter, side, and back views plus excited invention, focused analysis, and worried expressions. Keep goggles and tool belt consistent; no oversized fantasy gadgets. High-end cinematic stylized-realistic 3D animation, neutral grey-green studio background, consistent proportions, no text, no watermark, wide 3:2 composition.",
+      "locked_traits": [
+        "golden-brown fur",
+        "round goggles",
+        "modular tool belt"
+      ],
+      "review_required": true
+    },
+    "Mira": {
+      "asset_id": "char-mira-reference-v1",
+      "type": "character_reference",
+      "prompt": "Production character reference sheet for Mira, a sleek russet-furred young female vanar strategist. Short practical hair tuft, focused eyes, blue-grey contemporary tactical streetwear suitable for climbing and city movement, restrained utility details, athletic realistic build. Show front, three-quarter, side, and back views plus analytical focus, firm warning, and guarded relief. Practical consistent clothing, high-end cinematic stylized-realistic 3D animation, neutral grey-green studio background, no text, no watermark, wide 3:2 composition.",
+      "locked_traits": [
+        "russet fur",
+        "short practical hair tuft",
+        "blue-grey streetwear"
+      ],
+      "review_required": true
+    }
+  }
+}
