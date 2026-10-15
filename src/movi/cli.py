@@ -48,6 +48,15 @@ def plan(episode_number: int) -> int:
         print(f"   Beat: {scene.get('beat', 'TBD')}")
     return 0
 
+def screenplay(episode_number: int) -> int:
+    path = ROOT / "series" / "screenplays" / f"episode-{episode_number:03d}-"
+    matches = sorted((ROOT / "series" / "screenplays").glob(f"episode-{episode_number:03d}-*.md"))
+    if not matches:
+        print(f"No screenplay draft found for episode {episode_number}.", file=sys.stderr)
+        return 2
+    print(matches[0].read_text(encoding="utf-8"))
+    return 0
+
 def render(episode_number: int) -> int:
     print("Rendering is not configured yet.")
     print("No video has been generated. Configure and implement provider adapters first.")
@@ -61,6 +70,8 @@ def main() -> int:
     sub.add_parser("validate", help="Validate core series data")
     p_plan = sub.add_parser("plan", help="Print an episode outline")
     p_plan.add_argument("episode", type=int)
+    p_screenplay = sub.add_parser("screenplay", help="Print a screenplay draft")
+    p_screenplay.add_argument("episode", type=int)
     p_render = sub.add_parser("render", help="Render an episode (not yet implemented)")
     p_render.add_argument("episode", type=int)
     args = parser.parse_args()
@@ -69,6 +80,8 @@ def main() -> int:
             return validate()
         if args.command == "plan":
             return plan(args.episode)
+        if args.command == "screenplay":
+            return screenplay(args.episode)
         if args.command == "render":
             return render(args.episode)
     except ValueError as exc:
