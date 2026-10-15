@@ -1,0 +1,76 @@
+{
+  "series": "VANAR: WILD CODE",
+  "target_minutes": 27,
+  "episodes": [
+    {"number":1,"title":"The Canopy That Never Sleeps","arc":"Roots of NeoVan","target_minutes":27,"logline":"Ayaan's everyday life in a thriving forest city is interrupted by a security drill that reveals a hidden threat.","scenes":[
+      {"title":"Morning Above the Green","location":"NeoVan canopy transit","beat":"Introduce the modern vanar city, Ayaan, and the community's interconnected life."},
+      {"title":"A Friendly Race","location":"Elevated market walkways","beat":"Ayaan and friends compete, showing their skills and relationships through action."},
+      {"title":"The Leader's Briefing","location":"Civic operations hub","beat":"Veer responds to unexplained signal failures near an old forest boundary."},
+      {"title":"A Signal in the Roots","location":"Abandoned relay station","beat":"Ayaan discovers evidence that someone is mapping the city's defenses."},
+      {"title":"Eyes in the Dark","location":"Rain-soaked service bridge","beat":"A watcher reports Ayaan's discovery to Kairav, establishing the long-term threat."}
+    ]},
+    {"number":2,"title":"A Map with Missing Pieces","arc":"Roots of NeoVan","target_minutes":27,"logline":"Ayaan and Chiku investigate a corrupted map while Veer tries to keep rumors from destabilizing the city.","scenes":[
+      {"title":"The Broken Archive","location":"Community data library","beat":"Chiku recovers fragments of the relay's route map."},
+      {"title":"A Father's Warning","location":"Veer's workshop","beat":"Veer tells Ayaan that evidence without context can put innocent people at risk."},
+      {"title":"Unmarked Routes","location":"Lower canopy maintenance tunnels","beat":"Mira identifies a route that bypasses official sensors."},
+      {"title":"A Quiet Interception","location":"Old service platform","beat":"The friends evade a masked patrol and lose part of the map."},
+      {"title":"Kairav Makes an Offer","location":"Private command suite","beat":"Kairav publicly offers help while privately ordering surveillance."}
+    ]},
+    {"number":3,"title":"The Brother in the Glass Tower","arc":"Roots of NeoVan","target_minutes":27,"logline":"A public celebration brings Veer and Kairav together, forcing Ayaan to question the story he has been told about his family.","scenes":[
+      {"title":"Festival of Lights","location":"Central canopy plaza","beat":"Show the community's traditions and modern civic culture."},
+      {"title":"Two Brothers, One City","location":"Civic tower balcony","beat":"Veer and Kairav disagree over security and freedom."},
+      {"title":"Ayaan Overhears","location":"Tower service corridor","beat":"Ayaan catches a fragment of a conversation about an old failed coup."},
+      {"title":"The Power Flicker","location":"Festival transit grid","beat":"A coordinated outage triggers a rescue sequence."},
+      {"title":"A Promise Unspoken","location":"Quiet rooftop garden","beat":"Veer decides to investigate Kairav without exposing Ayaan."}
+    ]},
+    {"number":4,"title":"The Test Run","arc":"Roots of NeoVan","target_minutes":27,"logline":"Ayaan's attempt to prove himself becomes a dangerous chase through the city's maintenance network.","scenes":[
+      {"title":"Prototype Day","location":"Chiku's workshop","beat":"A gadget demonstration goes sideways and reveals a useful signal pattern."},
+      {"title":"Unauthorized Pursuit","location":"Transit cables","beat":"Ayaan follows a suspicious courier against instructions."},
+      {"title":"Dead End","location":"Flooded maintenance tunnel","beat":"The courier escapes after forcing Ayaan to choose between pursuit and helping a trapped worker."},
+      {"title":"The Choice","location":"Emergency shelter","beat":"Ayaan saves the worker, earning respect but losing the evidence."},
+      {"title":"A Report to Kairav","location":"Encrypted comms room","beat":"Kairav learns Ayaan has begun investigating."}
+    ]},
+    {"number":5,"title":"The Night the Lights Fell","arc":"The Fall","target_minutes":27,"logline":"A staged emergency fractures public trust and gives Kairav the opening he has been waiting for.","scenes":[
+      {"title":"Power Grid Warning","location":"City control center","beat":"Multiple systems fail in a sequence too precise to be accidental."},
+      {"title":"Evacuation Lines","location":"Market bridges","beat":"Ayaan and friends help civilians escape while authorities struggle to coordinate."},
+      {"title":"The Emergency Vote","location":"Civic chamber","beat":"Kairav uses fear to demand extraordinary control."},
+      {"title":"Veer's Last Stand","location":"Main relay tower","beat":"Veer confronts Kairav and is outmaneuvered by a prepared force."},
+      {"title":"Rudra's Escape Route","location":"Hidden forest trail","beat":"Rudra takes the young Ayaan away as the city falls under Kairav's control."}
+    ]},
+    {"number":6,"title":"Beyond the Green Line","arc":"The Exile Years","target_minutes":27,"logline":"Far from NeoVan, Ayaan struggles with loss while Rudra teaches him survival, restraint, and patience.","scenes":[
+      {"title":"A Different Forest","location":"Remote ridge settlement","beat":"Ayaan experiences a quiet life without the technology he took for granted."},
+      {"title":"The Anger Drill","location":"Training clearing","beat":"Rudra interrupts reckless training and explains why anger is not a plan."},
+      {"title":"A Message Never Sent","location":"Old signal post","beat":"Ayaan tries to contact his friends but discovers the network is monitored."},
+      {"title":"The Long Walk","location":"Mountain forest route","beat":"A survival challenge forces Ayaan to trust Rudra's experience."},
+      {"title":"A Name in the News","location":"Settlement workshop","beat":"Ayaan sees a broadcast portraying Kairav as the city's savior."}
+    ]},
+    {"number":7,"title":"Skills Are Not Strength","arc":"The Exile Years","target_minutes":27,"logline":"Ayaan learns that skill without judgment can put the people he wants to protect in danger.","scenes":[
+      {"title":"Three Disciplines","location":"Training ground","beat":"Rudra introduces observation, movement, and de-escalation as equal disciplines."},
+      {"title":"The Bridge Challenge","location":"Broken suspension bridge","beat":"Ayaan must cross without abandoning a slower trainee."},
+      {"title":"A Fight Avoided","location":"Remote supply stop","beat":"Ayaan resolves a confrontation through listening rather than force."},
+      {"title":"Rudra's Old Debt","location":"Campfire shelter","beat":"Rudra reveals his connection to Veer and the failed evacuation."},
+      {"title":"The Return Decision","location":"High ridge above NeoVan's valley","beat":"Ayaan chooses to return, knowing the city may not welcome him."}
+    ]},
+    {"number":8,"title":"A City That Forgot","arc":"Return to NeoVan","target_minutes":27,"logline":"Ayaan returns to a polished but frightened NeoVan and discovers that his friends have learned to survive under surveillance.","scenes":[
+      {"title":"The Checkpoint","location":"Outer transit gate","beat":"Ayaan sees new biometric controls and restricted movement."},
+      {"title":"Posters of a Hero","location":"Central plaza","beat":"Kairav's propaganda reframes the coup as a rescue."},
+      {"title":"A Familiar Signal","location":"Rooftop relay","beat":"Ayaan recognizes a pattern Chiku used in childhood."},
+      {"title":"The Reunion Trap","location":"Closed repair shop","beat":"Ayaan finds Chiku but an alarm forces them to split up."},
+      {"title":"Old Friends, New Rules","location":"Underground service room","beat":"Mira, Kabir, Zed, and Tara reunite with Ayaan cautiously."}
+    ]},
+    {"number":9,"title":"The First Plan Fails","arc":"Resistance","target_minutes":27,"logline":"The friends attempt to expose Kairav's control network but underestimate how thoroughly he has mapped their habits.","scenes":[
+      {"title":"A Plan on Paper","location":"Hidden workshop","beat":"The group builds a nonlethal plan to copy the command logs."},
+      {"title":"Inside the Grid","location":"Restricted data hub","beat":"Mira and Chiku reach the archive while others manage the distraction."},
+      {"title":"A Familiar Weakness","location":"Security corridor","beat":"Kairav anticipates Ayaan's route and closes the exits."},
+      {"title":"Captured","location":"Underground holding block","beat":"The friends are taken after choosing to protect a civilian informant."},
+      {"title":"Left in the Rain","location":"Disused forest access road","beat":"Wounded and abandoned, the group hears a calm voice approach."}
+    ]},
+    {"number":10,"title":"The Wayfarer","arc":"The Turning Point","target_minutes":27,"logline":"A humble stranger helps the wounded friends recover and begins teaching them that courage is service before victory.","scenes":[
+      {"title":"A Small Fire","location":"Sheltered ravine","beat":"The Wayfarer treats injuries with practical care and asks no reward."},
+      {"title":"No Easy Miracle","location":"Forest camp","beat":"The friends must rest and help one another; recovery is not instantaneous."},
+      {"title":"The First Lesson","location":"Quiet clearing","beat":"The Wayfarer asks what they were trying to protect, not whom they wanted to punish."},
+      {"title":"Strength with Limits","location":"Natural obstacle course","beat":"Each friend discovers a discipline suited to their own strengths and limitations."},
+      {"title":"A Dawn Choice","location":"Ridge overlooking NeoVan","beat":"The group commits to freeing the city without becoming like its oppressor."}
+    ]}
+  ]
+}
