@@ -145,10 +145,10 @@ def pipeline_status() -> int:
         ("screenplay drafts", True, "Episode 1 draft exists; timing is unverified"),
         ("shot manifest", True, "Episode 1 has a structured 29-shot plan"),
         ("asset registry", True, "Metadata registry exists; no media files are implied"),
-        ("character reference images", False, "Prompts exist; images are not generated/approved"),
+        ("character reference images", False, "Local ComfyUI and OpenAI candidate-generation adapters exist; images are not generated/approved"),
         ("voice generation/recording", False, "Not integrated"),
         ("music and sound generation", False, "Guides exist; generation/assembly not integrated"),
-        ("visual shot generation", False, "Provider adapter not integrated"),
+        ("visual shot generation", False, "Episode-shot batch generation and continuity controls are not implemented"),
         ("video assembly", False, "Not implemented"),
         ("rendered episode QA", False, "No rendered episode exists"),
     ]
