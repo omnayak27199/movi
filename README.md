@@ -65,13 +65,13 @@ The planned path does not need to exist until the asset is generated. To mark an
 
 ## Honest status
 
-MOVI does **not** yet generate a finished 27-minute animated MP4. Character image generation has an opt-in OpenAI Images API adapter for candidate reference sheets. Voice recording/TTS, music generation, video generation, clip assembly, and rendered-episode QA remain unimplemented. Storyboard timings are editorial targets and must be checked in a timed animatic.
+MOVI does **not** yet generate a finished 27-minute animated MP4. Character reference generation has opt-in OpenAI API and local ComfyUI adapters for candidate reference sheets. Voice recording/TTS, music generation, video generation, clip assembly, and rendered-episode QA remain unimplemented. Storyboard timings are editorial targets and must be checked in a timed animatic.
 
 ## Roadmap
 
 1. Validate story, character, episode, and storyboard data.
 2. Track all planned/generated assets and their licensing/provenance.
-3. Produce approved character reference sheets and environment keyframes.
+3. Produce candidate character reference sheets locally or via a configured API; review and approve them before use.
 4. Build a timed animatic and verify runtime.
 5. Add configurable adapters for dialogue, voice, music, shot/image generation, and video assembly.
 6. Add retries, caching, continuity checks, cost limits, and preview-render QA.
