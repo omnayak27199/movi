@@ -29,5 +29,12 @@ class SeriesDataTests(unittest.TestCase):
         self.assertTrue(all(shot.get("visual") for shot in shots))
         self.assertEqual(data["status"], "planned_not_rendered")
 
+    def test_asset_registry_is_valid_and_asset_ids_are_unique(self):
+        data = json.loads((ROOT / "assets/registry.json").read_text(encoding="utf-8"))
+        self.assertEqual(data["schema_version"], 1)
+        self.assertIsInstance(data["assets"], list)
+        ids = [asset["id"] for asset in data["assets"]]
+        self.assertEqual(len(ids), len(set(ids)))
+
 if __name__ == "__main__":
     unittest.main()
